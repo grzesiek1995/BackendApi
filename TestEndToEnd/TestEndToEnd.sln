@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.0.0
+MinimumVisualStudioVersion = 10.0.0.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEndToEnd", "TestEndToEnd\TestEndToEnd.csproj", "{68F5A73B-AA07-420C-965E-99CFC2C4E604}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68F5A73B-AA07-420C-965E-99CFC2C4E604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F5A73B-AA07-420C-965E-99CFC2C4E604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F5A73B-AA07-420C-965E-99CFC2C4E604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F5A73B-AA07-420C-965E-99CFC2C4E604}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
