@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Core.Repositories;
+using Api.Infrastructure.Repositories;
+using Api.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Api
+namespace Api.App
 {
     public class Startup
     {
@@ -23,6 +26,8 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUserRepository, InMemoryUserRepositore>(); //Obiekt tworzony po kazdyn żadaniu hhtp
+            services.AddScoped<IUserService,UserService>();
             services.AddMvc();
         }
 
