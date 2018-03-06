@@ -3,28 +3,26 @@ using System.Threading;
 using Api.Core.Domain;
 using Api.Core.Repositories;
 using Api.Infrastructure.DTO;
+using AutoMapper;
 
 namespace Api.Infrastructure.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        private readonly IMapper _iMapper;
+       
+        public UserService(IUserRepository userRepository ,IMapper mapper)
         {
             _userRepository = userRepository;
+            _iMapper = mapper;
         }
 
         public UserDto Get(string email)
         {
             var user = _userRepository.Get(email);
-            return  new UserDto
-            {
-                Id = user.Id,
-                Email = user.Email,
-                Fullname = user.Fullname,
-                UserName = user.UserName,
-                    
-            };
+            return _iMapper.Map<User, UserDto>(user);
+
         }
 
         public void Register(string email,string username, string password)

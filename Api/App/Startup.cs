@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Core.Repositories;
+using Api.Infrastructure.Mappers;
 using Api.Infrastructure.Repositories;
 using Api.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,7 @@ namespace Api.App
         {
             services.AddScoped<IUserRepository, InMemoryUserRepositore>(); //Obiekt tworzony po kazdyn żadaniu hhtp
             services.AddScoped<IUserService,UserService>();
+            services.AddSingleton(AutoMapperConfig.Initialize());
             services.AddMvc();
         }
 

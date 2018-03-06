@@ -16,9 +16,9 @@ namespace Api.Infrastructure.Repositories
             new User("user3@email.com", "user3", "secret", "salt"),
         };
        
-        public User Get(Guid id) => _users.Single(x => x.Id == id);
+        public User Get(Guid id) => _users.SingleOrDefault(x => x.Id == id);
 
-        public User Get(string email) => _users.Single(x => x.Email == email.ToLowerInvariant());
+        public User Get(string email) => _users.SingleOrDefault(x => x.Email == email.ToLowerInvariant());
 
 
         public IEnumerable<User> GetAll() => _users;

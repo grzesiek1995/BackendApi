@@ -6,8 +6,7 @@ namespace Api.Core.Domain
 {
     public class Driver
     {
-        public Guid Id { get; protected set; }
-        
+       
         public Guid UserId { get; protected set; }
         
         public Vehicle Vehicle { get; protected set; }
@@ -15,5 +14,15 @@ namespace Api.Core.Domain
         public IEnumerable<Route> Routes { get; protected set; }
         
         public IEnumerable<DailyRout> DailyRouts { get; protected set; }
+
+        protected Driver()
+        {
+            
+        }
+
+        public Driver( Guid userId)
+        {
+          UserId = userId;
+        }
     }
 }
