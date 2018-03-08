@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Api.Core.Domain;
 using Api.Core.Repositories;
 using Api.Infrastructure.DTO;
@@ -18,23 +19,23 @@ namespace Api.Infrastructure.Services
             _iMapper = mapper;
         }
 
-        public UserDto Get(string email)
+        public async Task<UserDto> GetAsync(string email)
         {
-            var user = _userRepository.Get(email);
+            var user = await _userRepository.GetAsync(email);
             return _iMapper.Map<User, UserDto>(user);
 
         }
 
-        public void Register(string email,string username, string password)
+        public async Task RegisterAsync(string email,string username, string password)
         {
-            var user = _userRepository.Get(email);
+            var user = await _userRepository.GetAsync(email);
             if (user != null)
             {
                 throw new Exception("User with mail '{email}' Exiest !!!");
             }
             var salt = Guid.NewGuid().ToString("N");
-            user =new User(email,username,password,salt);
-            _userRepository.Add(user);
+            user = new User(email,username,password,salt);
+            await _userRepository.AddAsync(user);
         }
     }
 }

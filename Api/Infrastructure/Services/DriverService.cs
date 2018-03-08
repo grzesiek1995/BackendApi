@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Api.Core.Domain;
 using Api.Core.Repositories;
 using Api.Infrastructure.DTO;
@@ -15,9 +16,9 @@ namespace Api.Infrastructure.Services
             _mapper = mapper;
             _driverRepository = driverRepository;
         }
-        public DriverDto Get(Guid userId)
+        public async  Task<DriverDto> GetAsync(Guid userId)
         {
-           var driver =_driverRepository.Get(userId);
+           var driver = await _driverRepository.GetAsync(userId);
 
             return _mapper.Map<Driver,DriverDto>(driver);
         }

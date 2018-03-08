@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Api.Core.Domain;
 
 
@@ -7,11 +8,11 @@ namespace Api.Core.Repositories
 {
     public interface IUserRepository
     {
-        User Get(Guid id);
-        User Get(string email);
-        IEnumerable<User> GetAll();
-        void Add(User user);
-        void Remvove(Guid id);
-        void Update(User user);
+        Task<User> GetAsync(Guid id);
+        Task<User> GetAsync(string email);
+        Task<IEnumerable<User>> GetAllAsync();
+        Task AddAsync(User user);
+        Task RemvoveAsync(Guid id);
+        Task UpdateAsync(User user);
     }
 }
