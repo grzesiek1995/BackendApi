@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Infrastructure.Commands;
 using Api.Infrastructure.Commands.Users;
 using Api.Infrastructure.DTO;
 using Api.Infrastructure.Services;
@@ -10,10 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.App.Controllers
 {
     [Route("[controller]")]
-    public class UserController : Controller
+    public class UserController : ApiControllerBase
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        public UserController(IUserService userService,ICommandDispatcher commandDispatcher): base(commandDispatcher)
         {
             _userService = userService;
         }
@@ -22,13 +23,14 @@ namespace Api.App.Controllers
         public async Task<UserDto> Get(string email) =>await  _userService.GetAsync(email);
 
         [HttpPost("")]
-        public async Task Post([FromBody]CreateUser request)
+        public async Task<IActionResult> Post([FromBody]CreateUser command)
         {
-           await _userService.RegisterAsync(request.Email,request.UserName,request.Password);
+            await CommandDispatcher.DispatchAsync(command);
+            return Created($"user/{command.Email}",new object());
+
         }
-
-
-
+        
+   
 
 
     }
